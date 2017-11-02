@@ -11,7 +11,7 @@ public class Main {
 		
 		mainFrame.setSize(400, 400);
 		
-		MyComponent2 theComponent = new MyComponent2();
+		MyComponent theComponent = new MyComponent();
 		
 		mainFrame.add(theComponent);
 		
