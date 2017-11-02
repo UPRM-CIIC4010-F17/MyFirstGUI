@@ -8,12 +8,16 @@ public class Car {
 
 	private int xPos;
 	private int yPos;
+	private int width;
+	
+	private final static int DEFAULT_CAR_WIDTH = 60;
 	
 	private static long counter = 0;
 	
 	public Car(int xPos, int yPos) {
 		this.xPos = xPos;
 		this.yPos = yPos;
+		this.width = DEFAULT_CAR_WIDTH;
 		counter++;
 		System.out.println("Number of objects = " + counter);
 	}
@@ -26,11 +30,18 @@ public class Car {
 		return yPos;
 	}
 	
+	public int getWidth() {
+		return width;
+	}
+
 	public void setPos(int xPos, int yPos) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 	}
 	
+	public void setWidth(int width) {
+		this.width = width;
+	}
 
 	public void draw(Graphics g) {
 		

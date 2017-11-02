@@ -8,13 +8,13 @@ import java.util.Random;
 import javax.swing.JComponent;
 
 public class MyComponent extends JComponent {
-	
+
 	Car topLeftCar = new Car(0,0);
 	Car bottomRightCar = new Car(0,0);
-	Car randomCar = new Car(0,0);
-	
+	Car theCar = new Car(0,0);
+
 	private static Random rand = new Random();
-	
+
 	public void paintComponent(Graphics g) {
 		//Car topLeftCar = new Car(0,0);
 		//topLeftCar.setPos(0, 0);
@@ -22,9 +22,20 @@ public class MyComponent extends JComponent {
 		//Car bottomRightCar = new Car(this.getWidth()-60,this.getHeight()-30);
 		//bottomRightCar.setPos(this.getWidth()-60, this.getHeight()-30);
 		//bottomRightCar.draw(g);
-		int randX = randomCar.getXPos() + 5;
-		int randY = 0;
-		randomCar.setPos(randX, randY);
-		randomCar.draw(g);
+		int nextX = theCar.getXPos();
+		int nextY = theCar.getYPos();
+		if (theCar.getXPos() + theCar.getWidth() + 5 <= this.getWidth()) {
+			nextX += 5;
+		}
+		else if (theCar.getXPos() + theCar.getWidth() == this.getWidth()) {
+			nextY += 40;
+			nextX = 0;
+		}
+		else {
+			// the car would go beyond the edge
+			nextX += this.getWidth() - (theCar.getXPos() + theCar.getWidth());
+		}
+		theCar.setPos(nextX, nextY);
+		theCar.draw(g);
 	}
 }
