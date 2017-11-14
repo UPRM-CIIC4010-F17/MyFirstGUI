@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -9,6 +10,7 @@ public class Car {
 	private int xPos;
 	private int yPos;
 	private int width;
+	private int direction;
 	
 	private final static int DEFAULT_CAR_WIDTH = 60;
 	
@@ -18,6 +20,7 @@ public class Car {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.width = DEFAULT_CAR_WIDTH;
+		this.direction = 1; // Car initially moving left to right
 		counter++;
 		System.out.println("Number of objects = " + counter);
 	}
@@ -34,6 +37,10 @@ public class Car {
 		return width;
 	}
 
+	public int getDirection() {
+		return direction;
+	}
+
 	public void setPos(int xPos, int yPos) {
 		this.xPos = xPos;
 		this.yPos = yPos;
@@ -41,6 +48,10 @@ public class Car {
 	
 	public void setWidth(int width) {
 		this.width = width;
+	}
+	
+	public void setDirection(int direction) {
+		this.direction = direction;
 	}
 
 	public void draw(Graphics g) {
@@ -55,6 +66,18 @@ public class Car {
 		Rectangle body = new Rectangle(this.getXPos()+0,this.getYPos()+10,60,10);
 		Ellipse2D.Double rearTire = new Ellipse2D.Double(this.getXPos()+10, this.getYPos()+20, 10, 10);
 		Ellipse2D.Double frontTire = new Ellipse2D.Double(this.getXPos()+40, this.getYPos()+20, 10, 10);
+
+		Ellipse2D.Double redLight;
+		Ellipse2D.Double yellowLight;
+		
+		if (this.getDirection() > 0) {
+			redLight = new Ellipse2D.Double(this.getXPos()+0, this.getYPos()+10, 5, 5);
+			yellowLight = new Ellipse2D.Double(this.getXPos()+55, this.getYPos()+10, 5, 5);
+		}
+		else {
+			yellowLight = new Ellipse2D.Double(this.getXPos()+0, this.getYPos()+10, 5, 5);
+			redLight = new Ellipse2D.Double(this.getXPos()+55, this.getYPos()+10, 5, 5);
+		}
 	
 		g2.draw(rearWindow);
 		g2.draw(roof);
@@ -62,6 +85,14 @@ public class Car {
 		g2.draw(body);
 		g2.draw(rearTire);
 		g2.draw(frontTire);
+		
+		g2.setColor(Color.RED);
+		g2.fill(redLight);
+		
+		g2.setColor(Color.yellow);
+		g2.fill(yellowLight);
+		
+		
 	}
 	
 }

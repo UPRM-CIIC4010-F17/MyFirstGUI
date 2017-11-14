@@ -9,8 +9,8 @@ import javax.swing.JComponent;
 
 public class MyComponent extends JComponent {
 
-	Car topLeftCar = new Car(0,0);
-	Car bottomRightCar = new Car(0,0);
+	//	Car topLeftCar = new Car(0,0);
+	//	Car bottomRightCar = new Car(0,0);
 	Car theCar = new Car(0,0);
 
 	private static Random rand = new Random();
@@ -24,16 +24,41 @@ public class MyComponent extends JComponent {
 		//bottomRightCar.draw(g);
 		int nextX = theCar.getXPos();
 		int nextY = theCar.getYPos();
-		if (theCar.getXPos() + theCar.getWidth() + 5 <= this.getWidth()) {
-			nextX += 5;
-		}
-		else if (theCar.getXPos() + theCar.getWidth() == this.getWidth()) {
-			nextY += 40;
-			nextX = 0;
+		if (theCar.getDirection() > 0) {
+			if (theCar.getXPos() + theCar.getWidth() + 5 <= this.getWidth()) {
+				// Car can still move forward
+				nextX += 5 * theCar.getDirection();
+			}
+			else if (theCar.getXPos() + theCar.getWidth() == this.getWidth()) {
+				// Car exactly at right edge
+				nextY += 40;
+				if (nextY > this.getHeight()) {
+					nextY = 0;
+				}
+				theCar.setDirection(-1);
+			}
+			else {
+				// the car would go beyond the right edge
+				nextX += this.getWidth() - (theCar.getXPos() + theCar.getWidth());
+			}
 		}
 		else {
-			// the car would go beyond the edge
-			nextX += this.getWidth() - (theCar.getXPos() + theCar.getWidth());
+			if (theCar.getXPos() - 5 >= 0) {
+				// Car can still move backwards
+				nextX += 5 * theCar.getDirection();
+			}
+			else if (theCar.getXPos() == 0) {
+				// Car exactly at left edge
+				nextY += 40;
+				if (nextY > this.getHeight()) {
+					nextY = 0;
+				}
+				theCar.setDirection(1);
+			}
+			else {
+				// the car would go beyond the left edge
+				nextX = 0;
+			}
 		}
 		theCar.setPos(nextX, nextY);
 		theCar.draw(g);
