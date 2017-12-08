@@ -10,9 +10,12 @@ public class Car {
 	private int xPos;
 	private int yPos;
 	private int width;
+	private int height;
 	private int direction;
+	private Color color;
 	
 	private final static int DEFAULT_CAR_WIDTH = 60;
+	public final static int DEFAULT_CAR_HEIGHT = 30;
 	
 	private static long counter = 0;
 	
@@ -20,6 +23,7 @@ public class Car {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.width = DEFAULT_CAR_WIDTH;
+		this.height = DEFAULT_CAR_HEIGHT;
 		this.direction = 1; // Car initially moving left to right
 		counter++;
 		System.out.println("Number of objects = " + counter);
@@ -41,6 +45,14 @@ public class Car {
 		return direction;
 	}
 
+	public int getHeight() {
+		return height;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
 	public void setPos(int xPos, int yPos) {
 		this.xPos = xPos;
 		this.yPos = yPos;
@@ -52,6 +64,14 @@ public class Car {
 	
 	public void setDirection(int direction) {
 		this.direction = direction;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 	public void draw(Graphics g) {
@@ -79,12 +99,17 @@ public class Car {
 			redLight = new Ellipse2D.Double(this.getXPos()+55, this.getYPos()+10, 5, 5);
 		}
 	
+		g2.setColor(Color.BLACK);
 		g2.draw(rearWindow);
 		g2.draw(roof);
 		g2.draw(frontWindow);
-		g2.draw(body);
-		g2.draw(rearTire);
-		g2.draw(frontTire);
+		
+		g2.setColor(this.getColor());
+		g2.fill(body);
+		
+		g2.setColor(Color.BLACK);
+		g2.fill(rearTire);
+		g2.fill(frontTire);
 		
 		g2.setColor(Color.RED);
 		g2.fill(redLight);

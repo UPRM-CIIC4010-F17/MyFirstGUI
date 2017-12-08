@@ -9,21 +9,24 @@ public class Main {
 		
 		mainFrame.setTitle("My First CIIC 4010/ICOM 4015 GUI!!!!!");
 		
-		mainFrame.setSize(400, 400);
+		int raceWidth = 400;
+		int raceHeight = 200;
 		
-		MyComponent theComponent = new MyComponent();
+		mainFrame.setSize(raceWidth, raceHeight);
 		
-		mainFrame.add(theComponent);
+		CarRace theCarRace = new CarRace(raceWidth, raceHeight);
+		
+		mainFrame.add(theCarRace);
 		
 		mainFrame.setVisible(true);
 		
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		while (true) {
+		while (!theCarRace.someCarWon()) {
 			mainFrame.repaint();
 			Thread.sleep(100);
 		}
-		
+		mainFrame.repaint();		
 	}
 
 }
