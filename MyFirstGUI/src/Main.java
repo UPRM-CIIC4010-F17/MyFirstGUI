@@ -9,8 +9,8 @@ public class Main {
 		
 		mainFrame.setTitle("My First CIIC 4010/ICOM 4015 GUI!!!!!");
 		
-		int raceWidth = 400;
-		int raceHeight = 200;
+		int raceWidth = 800;
+		int raceHeight = 600;
 		
 		mainFrame.setSize(raceWidth, raceHeight);
 		

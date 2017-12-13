@@ -6,7 +6,7 @@ import javax.swing.JComponent;
 
 public class CarRace extends JComponent {
 	
-	Car[] cars;
+	Vehicle[] cars;
 	
 	Random carDistanceGenerator = new Random();
 	
@@ -26,12 +26,20 @@ public class CarRace extends JComponent {
 		// Calculate number of cars
 		this.numCars = height / (Car.DEFAULT_CAR_HEIGHT + DEFAULT_CAR_PADDING);
 		
-		cars = new Car[numCars];
+		cars = new Vehicle[numCars];
 		
-		int lanePosition = 0;
+		int lanePosition = 7;
 		
 		for(int i=0; i<numCars; i++) {
-			cars[i] = new Car(0, lanePosition);
+			if (i%3 == 0) {
+				cars[i] = new Truck(0, lanePosition);
+			}
+			else if (i%3 == 1) {
+				cars[i] = new Car(0, lanePosition);
+			}
+			else {
+				cars[i] = new PoliceCar(0, lanePosition);
+			}
 			cars[i].setColor(Color.CYAN);
 			lanePosition += cars[i].getHeight() + DEFAULT_CAR_PADDING;
 		}

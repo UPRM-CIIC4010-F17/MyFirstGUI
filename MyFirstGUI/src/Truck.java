@@ -5,78 +5,23 @@ import java.awt.Rectangle;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 
-public class Car extends Vehicle {
+public class Truck extends Vehicle {
 
-	private int xPos;
-	private int yPos;
-	private int width;
-	private int height;
-	private int direction;
-	private Color color;
-	
-	private final static int DEFAULT_CAR_WIDTH = 60;
-	public final static int DEFAULT_CAR_HEIGHT = 30;
-	
-	private static long counter = 0;
-	
-	public Car(int xPos, int yPos) {
+	public Truck(int xPos, int yPos) {
 		super(xPos, yPos);
 	}
-	
-//	public int getXPos() {
-//		return xPos;
-//	}
-//	
-//	public int getYPos() {
-//		return yPos;
-//	}
-//	
-//	public int getWidth() {
-//		return width;
-//	}
-//
-//	public int getDirection() {
-//		return direction;
-//	}
-//
-//	public int getHeight() {
-//		return height;
-//	}
-//
-//	public Color getColor() {
-//		return color;
-//	}
-//
-//	public void setPos(int xPos, int yPos) {
-//		this.xPos = xPos;
-//		this.yPos = yPos;
-//	}
-//	
-//	public void setWidth(int width) {
-//		this.width = width;
-//	}
-//	
-//	public void setDirection(int direction) {
-//		this.direction = direction;
-//	}
-//
-//	public void setHeight(int height) {
-//		this.height = height;
-//	}
-//
-//	public void setColor(Color color) {
-//		this.color = color;
-//	}
 
+	
+	@Override
 	public void draw(Graphics g) {
-		
 		Graphics2D g2 = (Graphics2D) g;
 		//Rectangle box = new Rectangle(0,0, 50, 50);
 		//g2.draw(box);
 		
-		Line2D.Double rearWindow = new Line2D.Double(this.getXPos()+10, this.getYPos()+10, this.getXPos()+20, this.getYPos()+0);
-		Line2D.Double roof = new Line2D.Double(this.getXPos()+20, this.getYPos()+0, this.getXPos()+40, this.getYPos()+0);
+		//Line2D.Double rearWindow = new Line2D.Double(this.getXPos()+10, this.getYPos()+10, this.getXPos()+20, this.getYPos()+0);
+		//Line2D.Double roof = new Line2D.Double(this.getXPos()+20, this.getYPos()+0, this.getXPos()+40, this.getYPos()+0);
 		Line2D.Double frontWindow = new Line2D.Double(this.getXPos()+40, this.getYPos()+0, this.getXPos()+50, this.getYPos()+10);
+		Rectangle cargo = new Rectangle(this.getXPos()+0,this.getYPos()-6,40,16);
 		Rectangle body = new Rectangle(this.getXPos()+0,this.getYPos()+10,60,10);
 		Ellipse2D.Double rearTire = new Ellipse2D.Double(this.getXPos()+10, this.getYPos()+20, 10, 10);
 		Ellipse2D.Double frontTire = new Ellipse2D.Double(this.getXPos()+40, this.getYPos()+20, 10, 10);
@@ -94,8 +39,8 @@ public class Car extends Vehicle {
 		}
 	
 		g2.setColor(Color.BLACK);
-		g2.draw(rearWindow);
-		g2.draw(roof);
+		//g2.draw(rearWindow);
+		g2.fill(cargo);
 		g2.draw(frontWindow);
 		
 		g2.setColor(this.getColor());
@@ -111,7 +56,7 @@ public class Car extends Vehicle {
 		g2.setColor(Color.yellow);
 		g2.fill(yellowLight);
 		
-		
+
 	}
-	
+
 }
