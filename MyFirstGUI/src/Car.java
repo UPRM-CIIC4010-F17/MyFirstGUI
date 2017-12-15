@@ -6,13 +6,6 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 
 public class Car extends Vehicle {
-
-	private int xPos;
-	private int yPos;
-	private int width;
-	private int height;
-	private int direction;
-	private Color color;
 	
 	private final static int DEFAULT_CAR_WIDTH = 60;
 	public final static int DEFAULT_CAR_HEIGHT = 30;
@@ -23,50 +16,6 @@ public class Car extends Vehicle {
 		super(xPos, yPos);
 	}
 	
-//	public int getXPos() {
-//		return xPos;
-//	}
-//	
-//	public int getYPos() {
-//		return yPos;
-//	}
-//	
-//	public int getWidth() {
-//		return width;
-//	}
-//
-//	public int getDirection() {
-//		return direction;
-//	}
-//
-//	public int getHeight() {
-//		return height;
-//	}
-//
-//	public Color getColor() {
-//		return color;
-//	}
-//
-//	public void setPos(int xPos, int yPos) {
-//		this.xPos = xPos;
-//		this.yPos = yPos;
-//	}
-//	
-//	public void setWidth(int width) {
-//		this.width = width;
-//	}
-//	
-//	public void setDirection(int direction) {
-//		this.direction = direction;
-//	}
-//
-//	public void setHeight(int height) {
-//		this.height = height;
-//	}
-//
-//	public void setColor(Color color) {
-//		this.color = color;
-//	}
 
 	public void draw(Graphics g) {
 		
