@@ -9,14 +9,16 @@ public class Main {
 		
 		mainFrame.setTitle("My First CIIC 4010/ICOM 4015 GUI!!!!!");
 		
-		int raceWidth = 800;
-		int raceHeight = 600;
+		int raceWidth = 720;
+		int raceHeight = 492;
 		
 		mainFrame.setSize(raceWidth, raceHeight);
 		
 		CarRace theCarRace = new CarRace(raceWidth, raceHeight);
 		
 		mainFrame.add(theCarRace);
+		
+		mainFrame.setLocationRelativeTo(null);
 		
 		mainFrame.setVisible(true);
 		
