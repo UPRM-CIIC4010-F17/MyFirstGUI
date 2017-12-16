@@ -1,12 +1,13 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 
-public abstract class Vehicle implements Raceable {
+import javax.imageio.ImageIO;
 
+public class Turtle implements Raceable {
+	
 	private int xPos;
 	private int yPos;
 	private int width;
@@ -14,21 +15,30 @@ public abstract class Vehicle implements Raceable {
 	private int direction;
 	private Color color;
 	
-	private final static int DEFAULT_CAR_WIDTH = 60;
-	public final static int DEFAULT_CAR_HEIGHT = 30;
+	private Image image;
 	
-	private static long counter = 0;
+	private final int DEFAULT_TURTLE_HEIGHT = 30;
+	private final int DEFAULT_TURTLE_WIDTH = 60;
 	
-	public Vehicle(int xPos, int yPos) {
+	public Turtle(int xPos, int yPos) {
 		this.xPos = xPos;
 		this.yPos = yPos;
-		this.width = DEFAULT_CAR_WIDTH;
-		this.height = DEFAULT_CAR_HEIGHT;
+		this.width = DEFAULT_TURTLE_WIDTH;
+		this.height = DEFAULT_TURTLE_HEIGHT;
 		this.direction = 1; // Car initially moving left to right
-		counter++;
-		System.out.println("Number of objects = " + counter);
+		
+		File imageFile = new File("images/TurtleWithSunglassesSmall.png");
+		
+		try {
+			image = ImageIO.read(imageFile);
+		}
+		catch (IOException e) {
+			System.out.println("Fatal error loading image");
+			System.exit(1);
+		}
 	}
-	
+
+
 	public int getXPos() {
 		return xPos;
 	}
@@ -73,7 +83,9 @@ public abstract class Vehicle implements Raceable {
 	public void setColor(Color color) {
 		this.color = color;
 	}
-
-	public abstract void draw(Graphics g);
 	
+	public void draw(Graphics g) {
+		g.drawImage(image, getXPos(), getYPos(), null);
+	}
+
 }

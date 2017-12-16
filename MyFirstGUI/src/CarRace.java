@@ -6,7 +6,7 @@ import javax.swing.JComponent;
 
 public class CarRace extends JComponent {
 	
-	Vehicle[] cars;
+	Raceable[] raceables;
 	
 	Random carDistanceGenerator = new Random();
 	
@@ -26,22 +26,25 @@ public class CarRace extends JComponent {
 		// Calculate number of cars
 		this.numCars = height / (Car.DEFAULT_CAR_HEIGHT + DEFAULT_CAR_PADDING);
 		
-		cars = new Vehicle[numCars];
+		raceables = new Raceable[numCars];
 		
 		int lanePosition = 7;
 		
 		for(int i=0; i<numCars; i++) {
-			if (i%3 == 0) {
-				cars[i] = new Truck(0, lanePosition);
+			if (i%4 == 0) {
+				raceables[i] = new Truck(0, lanePosition);
 			}
-			else if (i%3 == 1) {
-				cars[i] = new Car(0, lanePosition);
+			else if (i%4 == 1) {
+				raceables[i] = new Car(0, lanePosition);
+			}
+			else if (i%4 == 2) {
+				raceables[i] = new Turtle(0, lanePosition);
 			}
 			else {
-				cars[i] = new PoliceCar(0, lanePosition);
+				raceables[i] = new PoliceCar(0, lanePosition);
 			}
-			cars[i].setColor(Color.CYAN);
-			lanePosition += cars[i].getHeight() + DEFAULT_CAR_PADDING;
+			raceables[i].setColor(Color.CYAN);
+			lanePosition += raceables[i].getHeight() + DEFAULT_CAR_PADDING;
 		}
 	}
 	
@@ -49,19 +52,22 @@ public class CarRace extends JComponent {
 		
 		// Draw each car
 		for (int i=0; i<numCars; i++) {
-			cars[i].draw(g);
+			raceables[i].draw(g);
 		}
 		
 		// Move cars
 		int nextDistance = 0;
 		for (int i=0; i<numCars; i++) {
 			nextDistance = carDistanceGenerator.nextInt(DEFAULT_CAR_SPEED);
-			if ((cars[i].getXPos() + cars[i].getWidth() + nextDistance) >= this.getWidth()) {
-				nextDistance -= (cars[i].getXPos() + cars[i].getWidth() + nextDistance) - this.getWidth();
-				this.someCarWon = true;
-				cars[i].setColor(Color.orange);
+			if (raceables[i] instanceof Turtle) {
+				nextDistance =  20 + carDistanceGenerator.nextInt(DEFAULT_CAR_SPEED);
 			}
-			cars[i].setPos(cars[i].getXPos() + nextDistance, cars[i].getYPos());
+			if ((raceables[i].getXPos() + raceables[i].getWidth() + nextDistance) >= this.getWidth()) {
+				nextDistance -= (raceables[i].getXPos() + raceables[i].getWidth() + nextDistance) - this.getWidth();
+				this.someCarWon = true;
+				raceables[i].setColor(Color.orange);
+			}
+			raceables[i].setPos(raceables[i].getXPos() + nextDistance, raceables[i].getYPos());
 		}
 
 	}
