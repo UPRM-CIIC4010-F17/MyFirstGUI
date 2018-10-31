@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
@@ -9,14 +11,18 @@ public class Main {
 		
 		mainFrame.setTitle("My First CIIC 4010/ICOM 4015 GUI!!!!!");
 		
-		int raceWidth = 800;
-		int raceHeight = 600;
+		int raceWidth = 1080;
+		int raceHeight = 700;
 		
 		mainFrame.setSize(raceWidth, raceHeight);
 		
 		CarRace theCarRace = new CarRace(raceWidth, raceHeight);
 		
 		mainFrame.add(theCarRace);
+		
+		mainFrame.getContentPane().setBackground(Color.GRAY);
+		
+		mainFrame.setLocationRelativeTo(null);
 		
 		mainFrame.setVisible(true);
 		
